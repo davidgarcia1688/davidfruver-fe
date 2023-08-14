@@ -1,0 +1,32 @@
+<div class="container mt-4">
+    <h4>Almacenar Producto</h4>
+    <form (ngSubmit)="almacenar()" #productForm="ngForm">
+        <div class="form-group">
+            <label for="nombreproducto">nombreproducto</label>
+            <input type="text" id="nombreproducto" name="nombreproducto" class="form-control" [(ngModel)]="producto.nombreproducto"
+                required="true" />
+        </div>
+        <div class="form-group">
+            <label for="detalleproducto">detalleproducto</label>
+            <textarea id="detalleproducto" name="detalleproducto" class="form-control" [(ngModel)]="producto.detalleproducto"
+                required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="precioproducto">precioproducto</label>
+            <input type="number" id="precioproducto" name="precioproducto" class="form-control" min="100"
+                [(ngModel)]="producto.precioproducto" required />
+        </div>
+        <div class="form-group">
+            <br>
+            <label for="foto">foto</label>
+            <input *ngIf="!producto.foto" type="file" id="foto" name="foto" (change)="cargarFoto($event)"
+                accept="image/*" required />
+            <br>
+            <img *ngIf="producto.foto" [src]="producto.foto" alt="foto del Producto" width="100" height="100" />
+            <button *ngIf="producto.foto" class="btn btn-warning" (click)="borrar()">Borrar</button>
+            <br>
+        </div>
+        <button type="submit" class="btn btn-primary">Almacenar Producto</button>
+        <a class="btn btn-danger" href="/">Cancelar</a>
+    </form>
+</div>

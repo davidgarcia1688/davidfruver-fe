@@ -1,0 +1,72 @@
+<div class="container">
+
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Carrito de compras
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <button class="btn btn-primary" type="button" (click)="facturar()">Facturar</button>
+          <table class="table table-bordered">
+            <thead class="table-secondary">
+                <tr>
+                    <th scope="col">idproducto</th>
+                    <th scope="col">nombreproducto</th>
+                    <th scope="col">detalleproducto</th>
+                    <th scope="col">precioproducto</th>
+                    <th scope="col">foto</th>
+                    <th scope="col">cantidad</th>
+                    <th scope="col center" style="text-align: center">
+                        Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let producto of carrito; let i = index">
+                    <th scope="row">{{ producto.idproducto }}</th>
+                    <td>{{ producto.nombreproducto }}</td>
+                    <td>{{ producto.detalleproducto }}</td>
+                    <td>{{ producto.precioproducto }}</td>
+                    <td align="center">
+                        <img [src]="producto.foto" alt="foto" width="53" height="53" />
+                    </td>
+                    <td>{{ producto.cantidad }}</td>
+                    <td align="center">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(producto, i)">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <p></p>
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let producto of productos">
+      <div class="card h-80" style="align-items: center">
+        <br>
+        <img [src]="producto.foto" width="150" height="150" />
+        <div class="card-body">
+          <h5>{{ producto.detalleproducto }}</h5>
+          <h5>{{ producto.nombreproducto }}</h5>
+          <h5>Precio {{ producto.precioproducto }}</h5>
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+          <div class="form-group flex-grow-1 mb-0">
+            <input class="form-control" [(ngModel)]="producto.cantidad" type="number" value="0" />
+          </div>
+          <button class="btn btn-primary" (click)="agregar(producto)" *ngIf="producto.cantidad > 0">
+            Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container">
+    <button class="btn btn-success" (click)="crear()">
+        Agregar Producto
+    </button>
+
+    <br /><br />
+
+    <table class="table table-bordered">
+        <thead class="table-secondary">
+            <tr>
+                <th scope="col">idproducto</th>
+                <th scope="col">nombreproducto</th>
+                <th scope="col">detalleproducto</th>
+                <th scope="col">precioproducto</th>
+                <th scope="col">foto</th>
+                <th scope="col center" style="text-align: center" colspan="2">
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of productos; let i = index">
+                <th scope="row">{{ producto.idproducto }}</th>
+                <td>{{ producto.nombreproducto }}</td>
+                <td>{{ producto.detalleproducto }}</td>
+                <td>{{ producto.precioproducto }}</td>
+                <td align="center">
+                    <img [src]="producto.foto" alt="foto" width="53" height="53" />
+                </td>
+                <td align="center">
+                    <button type="button" class="btn btn-warning btn-sm" (click)="editar(producto)">Editar</button>
+                </td>
+                <td align="center">
+                    <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(producto, i)">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
